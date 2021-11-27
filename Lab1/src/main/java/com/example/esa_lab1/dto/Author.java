@@ -2,6 +2,8 @@ package com.example.esa_lab1.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
 
 import javax.persistence.*;
 import java.util.HashSet;

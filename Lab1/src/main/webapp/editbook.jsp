@@ -15,16 +15,15 @@
     <form action="${pageContext.request.contextPath}/editBook" method="post">
         <div class="modal-content">
             <input name="id" type="hidden" value="${id}" />
-            <div class="modal-header">Книга №${id}</div>
-            <p>Название <input name="name" id="nameBook" type="text" value="${name}" required/></p>
-            <p>Авторы <input name="author" id="authorBook" type="text" value="${authors}" required/></p>
+            <div class="modal-header">Книга "${name}"</div>
+            <p>Название <input name="name" id="nameBook" type="text" pattern="(.|\s)*\S(.|\s)*" value="${name}" required/></p>
+            <p>Авторы <input name="author" id="authorBook" type="text" pattern="(.|\s)*\S(.|\s)*" value="${authors}" required/></p>
             <p>Год <input name="year" id="yearBook" type="number" value="${year}" required/></p>
-            <p>Жанры <input name="genre" id="genreBook" type="text" value="${genres}" required/></p>
+            <p>Жанры <input name="genre" id="genreBook" type="text" pattern="(.|\s)*\S(.|\s)*" value="${genres}" required/></p>
             <p>Цена <input name="price" id="price" type="number" value="${price}" required/></p>
             <p>Описание</p>
             <p>
-                <textarea name="description" id="descriptionBook" rows="10" cols="45" type="text" maxlength="50">
-                    ${description}</textarea>
+                <textarea name="description" id="descriptionBook" rows="10" cols="35" type="text" maxlength="50">${description}</textarea>
             </p>
             <div class="modal-buttons">
                 <button id="go-back" class="modal-button" type="button">Закрыть</button>

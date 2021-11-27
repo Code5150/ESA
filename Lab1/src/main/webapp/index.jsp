@@ -3,6 +3,7 @@
 <%@ page import="com.example.esa_lab1.dto.Author" %>
 <%@ page import="com.example.esa_lab1.dao.BookDAO" %>
 <%@ page import="com.example.esa_lab1.utils.HibernateUtils" %>
+<%@ page import="jakarta.servlet.jsp.PageContext" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,7 @@
 
         <%
 
-            HibernateUtils.createEntityManager();
+            if (!HibernateUtils.entityManagerExists()) HibernateUtils.createEntityManager();
 
             List<Book> books = BookDAO.selectAll();
             if(books != null) {
@@ -44,18 +45,18 @@
                     StringBuilder authorsToStr = new StringBuilder();
                     int numAuthors = 2;
                     for (Author author : book.getAuthors()) {
-                        authorsToStr.append(author.getName());
                         numAuthors--;
-                        if (numAuthors == 0) {
+                        if (numAuthors < 0) {
                             authorsToStr.append("...");
                             break;
                         }
+                        authorsToStr.append(author.getName()).append(" ");
                     }
                     out.println("<div class=\"element\">" + authorsToStr + "</div>");
-                    out.println("<div class=\"element\">" + book.getEditionYear() + "</div>");
+                    out.println("<div class=\"element\">" + (book.getEditionYear().getYear() + 1900) + "</div>");
                     out.println("<div class=\"element\">" + book.getPrice() + "</div>");
                     out.println("" +
-                            "<form id=\"edit-form\" action=\"${pageContext.request.contextPath}/editBook\" method=\"get\">" +
+                            "<form id=\"edit-form\" action=\"" + request.getContextPath() + "/editBook\" method=\"get\">" +
                             "<input id=\"id\" name=\"id\" value=\"" + book.getId() + "\" hidden>" +
                             "<div class=\"edit-modal-button\">" +
                             "<button id=\"#editButton\" type=\"submit\">" +
@@ -65,7 +66,7 @@
                             "</form>"
                     );
                     out.println("" +
-                            "<form id=\"del-form\" action=\"${pageContext.request.contextPath}/deleteBook\" method=\"delete\">" +
+                            "<form id=\"del-form\" action=\"" + request.getContextPath() + "/deleteBook\" method=\"delete\">" +
                             "<input id=\"id\" name=\"id\" value=\"" + book.getId() + "\" hidden>" +
                             "<div class=\"del-button\">" +
                             "<button type=\"submit\">" +
@@ -77,7 +78,7 @@
                 }
             }
 
-            HibernateUtils.destroyEntityManager();
+            //HibernateUtils.destroyEntityManager();
          %>
     </div>
 </div>

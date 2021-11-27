@@ -1,8 +1,10 @@
 package com.example.esa_lab1.dao;
 
 import com.example.esa_lab1.dto.Author;
+import lombok.NonNull;
 
 import javax.annotation.ManagedBean;
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,5 +36,15 @@ public class AuthorDAO extends AbstractDAO{
         em.getTransaction().begin();
         em.remove(entity);
         em.getTransaction().commit();
+    }
+
+    public static Author findByName(@NonNull String authorName) {
+        Author result = null;
+        try {
+            result = em.createQuery("SELECT a from Author a WHERE :authorName like LOWER(a.name)", Author.class)
+                    .setParameter("authorName", authorName)
+                    .getSingleResult();
+        } catch (NoResultException ignored) { }
+        return result;
     }
 }

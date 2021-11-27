@@ -11,6 +11,10 @@ import javax.persistence.Persistence;
 public class HibernateUtils {
     private static EntityManager em;
 
+    public static boolean entityManagerExists() {
+        return em != null;
+    }
+
     public static void createEntityManager() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory( "bookShop" );
         em = emf.createEntityManager();

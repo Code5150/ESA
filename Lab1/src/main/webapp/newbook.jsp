@@ -12,17 +12,17 @@
     <hr color="#f28f47" />
 </div>
 <div class="main">
-    <form action="${pageContext.request.contextPath}/editBook" method="post">
+    <form action="${pageContext.request.contextPath}/newBook" method="post">
         <div class="modal-content">
             <div class="modal-header">Новая книга</div>
-            <p>Название <input name="name" id="nameBook" type="text" required/></p>
-            <p>Авторы <input name="author" id="authorBook" type="text" required/></p>
+            <p>Название <input name="name" id="nameBook" type="text" pattern="(.|\s)*\S(.|\s)*" required/></p>
+            <p>Авторы <input name="author" id="authorBook" type="text" pattern="(.|\s)*\S(.|\s)*" required/></p>
             <p>Год <input name="year" id="yearBook" type="number" required/></p>
-            <p>Жанры <input name="genre" id="genreBook" type="text" required/></p>
+            <p>Жанры <input name="genre" id="genreBook" type="text" pattern="(.|\s)*\S(.|\s)*" required/></p>
             <p>Цена <input name="price" id="price" type="number" required/></p>
             <p>Описание</p>
             <p>
-                <textarea name="description" id="descriptionBook" rows="10" cols="45" type="text" maxlength="50"></textarea>
+                <textarea name="description" id="descriptionBook" rows="10" cols="35" type="text" maxlength="50"></textarea>
             </p>
             <div class="modal-buttons">
                 <button id="go-back" class="modal-button" type="button">Закрыть</button>

@@ -1,9 +1,13 @@
 package com.example.esa_lab1.dao;
 
+import com.example.esa_lab1.dto.Author;
 import com.example.esa_lab1.dto.Book;
+import lombok.NonNull;
 
 import javax.annotation.ManagedBean;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @ManagedBean
