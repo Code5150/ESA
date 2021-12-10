@@ -1,28 +1,11 @@
-import com.example.esa_lab1.dao.AuthorDAO;
-import com.example.esa_lab1.dao.BookDAO;
-import com.example.esa_lab1.dao.GenreDAO;
-import com.example.esa_lab1.dto.Author;
-import com.example.esa_lab1.dto.Book;
-import com.example.esa_lab1.dto.Genre;
-import com.example.esa_lab1.utils.HibernateUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.util.Date;
-import java.util.UUID;
-
 public class AppTest {
-    private EntityManager em;
+    /*private EntityManager em;
 
     @Before
     public void init() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory( "bookShop" );
         em = emf.createEntityManager();
-        HibernateUtils.setDaoEntityManager(em);
+        //HibernateUtils.setDaoEntityManager(em);
     }
 
     @Test
@@ -80,5 +63,5 @@ public class AppTest {
             em.getEntityManagerFactory().close();
         }
         em.close();
-    }
+    }*/
 }

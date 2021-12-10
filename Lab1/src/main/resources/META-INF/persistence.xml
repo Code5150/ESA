@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
-             version="2.2">
-    <persistence-unit name="bookShop">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence  https://jakarta.ee/xml/ns/persistence/persistence_2_2.xsd"
+             version="3.0">
+    <persistence-unit name="bookShop" transaction-type="JTA">
+        <jta-data-source>YourDatasource</jta-data-source>
         <class>com.example.esa_lab1.dto.Author</class>
         <class>com.example.esa_lab1.dto.Book</class>
         <class>com.example.esa_lab1.dto.Genre</class>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/esalab1db" />
-            <property name="javax.persistence.jdbc.user" value="postgres" />
-            <property name="javax.persistence.jdbc.password" value="Us3r1pa55w0rd" />
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/esalab1db"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value="your-db-password"/>
+            <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"/>
             <property name="hibernate.show_sql" value="true" />
-            <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
         </properties>
     </persistence-unit>
 </persistence>

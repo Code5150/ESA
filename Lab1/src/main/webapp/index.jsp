@@ -1,9 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.esa_lab1.dto.Book" %>
 <%@ page import="com.example.esa_lab1.dto.Author" %>
-<%@ page import="com.example.esa_lab1.dao.BookDAO" %>
-<%@ page import="com.example.esa_lab1.utils.HibernateUtils" %>
-<%@ page import="jakarta.servlet.jsp.PageContext" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -34,51 +31,42 @@
         </div>
 
         <%
-
-            if (!HibernateUtils.entityManagerExists()) HibernateUtils.createEntityManager();
-
-            List<Book> books = BookDAO.selectAll();
+            List<Book> books = (List<Book>) request.getAttribute("books");
             if(books != null) {
                 for (Book book : books) {
                     out.println("<div class=\"row\">");
                     out.println("<div class=\"element\">" + book.getName() + "</div>");
-                    StringBuilder authorsToStr = new StringBuilder();
-                    int numAuthors = 2;
-                    for (Author author : book.getAuthors()) {
-                        numAuthors--;
-                        if (numAuthors < 0) {
-                            authorsToStr.append("...");
-                            break;
-                        }
-                        authorsToStr.append(author.getName()).append(" ");
-                    }
+                    String authorsToStr = book.getAuthors().stream().map(Author::getName)
+                            .limit(2).reduce((a, b) -> b != null ? a + ", " + b: a).orElseThrow();
+                    if (book.getAuthors().size() > 2) { authorsToStr += "..."; }
                     out.println("<div class=\"element\">" + authorsToStr + "</div>");
                     out.println("<div class=\"element\">" + (book.getEditionYear().getYear() + 1900) + "</div>");
                     out.println("<div class=\"element\">" + book.getPrice() + "</div>");
-                    out.println("" +
-                            "<form id=\"edit-form\" action=\"" + request.getContextPath() + "/editBook\" method=\"get\">" +
-                            "<input id=\"id\" name=\"id\" value=\"" + book.getId() + "\" hidden>" +
-                            "<div class=\"edit-modal-button\">" +
-                            "<button id=\"#editButton\" type=\"submit\">" +
-                            "<img src=\"./resources/pen.png\" alt=\"ред.\"/>" +
-                            "</button>" +
-                            "</div>" +
-                            "</form>"
+                    out.println(new StringBuilder().append("<form id=\"edit-form\" action=\"")
+                            .append(request.getContextPath()).append("/editBook\" method=\"get\">")
+                            .append("<input id=\"id\" name=\"id\" value=\"").append(book.getId()).append( "\" hidden>")
+                            .append("<div class=\"edit-modal-button\">")
+                            .append("<button id=\"#editButton\" type=\"submit\">")
+                            .append("<img src=\"./resources/pen.png\" alt=\"ред.\"/>")
+                            .append("</button>")
+                            .append("</div>")
+                            .append("</form>")
                     );
-                    out.println("" +
-                            "<form id=\"del-form\" action=\"" + request.getContextPath() + "/deleteBook\" method=\"delete\">" +
-                            "<input id=\"id\" name=\"id\" value=\"" + book.getId() + "\" hidden>" +
-                            "<div class=\"del-button\">" +
-                            "<button type=\"submit\">" +
-                            "<img src=\"./resources/delete.png\" alt=\"уд.\" />" +
-                            "</button>" +
-                            "</div>" +
-                            "</form>");
+                    out.println(new StringBuilder().append("<form id=\"del-form\" action=\"")
+                            .append(request.getContextPath())
+                            .append("/deleteBook\" method=\"delete\">")
+                            .append("<input id=\"id\" name=\"id\" value=\"")
+                            .append(book.getId()).append("\" hidden>")
+                            .append("<div class=\"del-button\">")
+                            .append("<button type=\"submit\">")
+                            .append("<img src=\"./resources/delete.png\" alt=\"уд.\" />")
+                            .append("</button>")
+                            .append("</div>")
+                            .append("</form>")
+                    );
                     out.println("</div>");
                 }
             }
-
-            //HibernateUtils.destroyEntityManager();
          %>
     </div>
 </div>

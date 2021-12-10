@@ -1,13 +1,12 @@
 package com.example.esa_lab1.dto;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "book")
@@ -23,7 +22,7 @@ public class Book extends BaseUuidEntity {
     @Setter
     private String description;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
             name = "author_book",
             joinColumns = { @JoinColumn(name = "book_id") },
@@ -33,7 +32,7 @@ public class Book extends BaseUuidEntity {
     @Setter
     private Set<Author> authors = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
             name = "genre_book",
             joinColumns = { @JoinColumn(name = "book_id") },
