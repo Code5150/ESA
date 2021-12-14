@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>lab1</title>
+    <title>lab2</title>
     <link rel="stylesheet" href="../../resources/styles/styles.css" />
 </head>
 <body>

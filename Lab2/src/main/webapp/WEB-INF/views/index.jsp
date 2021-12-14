@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>lab1</title>
+    <title>lab2</title>
     <link rel="stylesheet" href="../../resources/styles/styles.css" />
 </head>
 <body>
