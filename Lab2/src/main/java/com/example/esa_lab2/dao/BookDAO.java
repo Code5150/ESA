@@ -2,36 +2,47 @@ package com.example.esa_lab2.dao;
 
 import com.example.esa_lab2.dto.Book;
 
-import javax.annotation.ManagedBean;
+import javax.inject.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
-@ManagedBean
-public class BookDAO extends AbstractDAO{
-    public static List<Book> selectAll() {
+@Singleton
+@Transactional(Transactional.TxType.REQUIRES_NEW)
+public class BookDAO implements StandartDAO<Book> {
+
+    @PersistenceContext
+    protected EntityManager em;
+
+    @Override
+    public List<Book> selectAll() {
         return em.createQuery("SELECT a from Book a", Book.class).getResultList();
     }
 
-    public static Book select(UUID id) {
-        var book = em.find(Book.class, id);
-        return book;
+    @Override
+    public Book select(UUID id) {
+        return em.find(Book.class, id);
     }
 
+    @Override
     public static void insert(Book entity) {
-        em.getTransaction().begin();
         em.persist(entity);
-        em.getTransaction().commit();
     }
 
-    public static void update(Book entity) {
-        em.getTransaction().begin();
+    @Override
+    public void update(Book entity) {
         em.merge(entity);
-        em.getTransaction().commit();
     }
 
-    public static void delete(Book entity) {
-        em.getTransaction().begin();
+    @Override
+    public void delete(Book entity) {
         em.remove(entity);
-        em.getTransaction().commit();
     }
+
+    public void delete(UUID id) {
+        em.remove(em.getReference(Book.class, id));
+    }
+
 }

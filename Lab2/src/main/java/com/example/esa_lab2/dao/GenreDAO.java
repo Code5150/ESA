@@ -1,42 +1,46 @@
 package com.example.esa_lab2.dao;
 
-import com.example.esa_lab2.dto.Author;
 import com.example.esa_lab2.dto.Genre;
 import lombok.NonNull;
 
-import javax.annotation.ManagedBean;
+import javax.inject.Singleton;
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
-@ManagedBean
-public class GenreDAO extends AbstractDAO{
+@Singleton
+@Transactional(Transactional.TxType.REQUIRES_NEW)
+public class GenreDAO implements StandartDAO<Genre> {
 
-    public static List<Genre> selectAll() {
+    @PersistenceContext
+    protected EntityManager em;
+
+    @Override
+    public List<Genre> selectAll() {
         return em.createQuery("SELECT g from Genre g", Genre.class).getResultList();
     }
 
-    public static Genre select(UUID id) {
-        var genre = em.find(Genre.class, id);
-        return genre;
+    @Override
+    public Genre select(UUID id) {
+        return em.find(Genre.class, id);
     }
 
+    @Override
     public static void insert(Genre entity) {
-        em.getTransaction().begin();
         em.persist(entity);
-        em.getTransaction().commit();
     }
 
-    public static void update(Genre entity) {
-        em.getTransaction().begin();
+    @Override
+    public void update(Genre entity) {
         em.merge(entity);
-        em.getTransaction().commit();
     }
 
-    public static void delete(Genre entity) {
-        em.getTransaction().begin();
+    @Override
+    public void delete(Genre entity) {
         em.remove(entity);
-        em.getTransaction().commit();
     }
 
     public static Genre findByName(@NonNull String genreName) {

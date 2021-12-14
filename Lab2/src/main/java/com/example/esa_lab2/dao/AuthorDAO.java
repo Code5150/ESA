@@ -3,39 +3,44 @@ package com.example.esa_lab2.dao;
 import com.example.esa_lab2.dto.Author;
 import lombok.NonNull;
 
-import javax.annotation.ManagedBean;
+import javax.inject.Singleton;
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
-@ManagedBean
-public class AuthorDAO extends AbstractDAO{
+@Singleton
+@Transactional(Transactional.TxType.REQUIRES_NEW)
+public class AuthorDAO implements StandartDAO<Author>{
 
-    public static List<Author> selectAll() {
+    @PersistenceContext
+    protected EntityManager em;
+
+    @Override
+    public List<Author> selectAll() {
         return em.createQuery("SELECT a from Author a", Author.class).getResultList();
     }
 
-    public static Author select(UUID id) {
-        var author = em.find(Author.class, id);
-        return author;
+    @Override
+    public Author select(UUID id) {
+        return em.find(Author.class, id);
     }
 
+    @Override
     public static void insert(Author entity) {
-        em.getTransaction().begin();
         em.persist(entity);
-        em.getTransaction().commit();
     }
 
-    public static void update(Author entity) {
-        em.getTransaction().begin();
+    @Override
+    public void update(Author entity) {
         em.merge(entity);
-        em.getTransaction().commit();
     }
 
-    public static void delete(Author entity) {
-        em.getTransaction().begin();
+    @Override
+    public void delete(Author entity) {
         em.remove(entity);
-        em.getTransaction().commit();
     }
 
     public static Author findByName(@NonNull String authorName) {

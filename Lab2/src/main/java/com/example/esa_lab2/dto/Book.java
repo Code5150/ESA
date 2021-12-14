@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "book")
-public class Book extends BaseUuidEntity {
+public class Book extends BaseUuidEntity  {
 
     @Column(name = "name")
     @Getter
@@ -22,7 +22,7 @@ public class Book extends BaseUuidEntity {
     @Setter
     private String description;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
             name = "author_book",
             joinColumns = { @JoinColumn(name = "book_id") },
@@ -32,7 +32,7 @@ public class Book extends BaseUuidEntity {
     @Setter
     private Set<Author> authors = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
             name = "genre_book",
             joinColumns = { @JoinColumn(name = "book_id") },

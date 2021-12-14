@@ -1,17 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.esa_lab2.dto.Book" %>
+<%@ page import="com.example.esa_lab2.dto.Author" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>lab1</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../../resources/styles/styles.css" />
 </head>
-<jsp:body>
+<body>
 <div class="header">
-    <img src="../../resources/book.png" alt="Book">
+    <img src="../../resources/images/book.png" alt="Book">
     <hr color="#f28f47" />
     <h1>Book Shop</h1>
     <hr color="#f28f47" />
@@ -25,40 +24,51 @@
     <div class="table-book">
         <div class="head row">
             <div class="element">Название книги</div>
-            <div class="element">Авторы</div>
+            <div class="element">Автор</div>
             <div class="element">Год</div>
             <div class="element">Цена</div>
             <div class="filler"></div>
         </div>
 
-        <c:if test="${!empty listBooks}">
-            <c:forEach items="${listBooks}" var="book">
-                <div class="row">
-                    <div class="element">${book.getName()}</div>
-                    <div class="element">${book.getAuthors()}</div>
-                    <div class="element">${book.getYear()}</div>
-                    <div class="element">${book.getPrice()}</div>
-                    <form id="edit-form" action="${pageContext.request.contextPath}/editBook" method="get">
-                        <input id="edit-id" name="id" value="${book.getId()}" hidden>
-                        <div class="edit-modal-button">
-                            <button id="#editButton" type="submit">
-                                <img src="resources/pen.png" alt="ред.">
-                            </button>
-                        </div>
-                    </form>
-                    <form id="del-form" action="${pageContext.request.contextPath}/deleteBook" method="get">
-                        <input id="delete-id" name="id" value="${book.getId()}" hidden>
-                        <div class="del-button">
-                            <button id="#deleteButton" type="submit">
-                                <img src="resources/delete.png" alt="уд.">
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
-            </c:forEach>
-        </c:if>
+        <%
+            List<Book> books = (List<Book>) request.getAttribute("books");
+            if(books != null) {
+                for (Book book : books) {
+                    out.println("<div class=\"row\">");
+                    out.println("<div class=\"element\">" + book.getName() + "</div>");
+                    String authorsToStr = book.getAuthors().stream().map(Author::getName)
+                            .limit(2).reduce((a, b) -> b != null ? a + ", " + b: a).orElseThrow();
+                    if (book.getAuthors().size() > 2) { authorsToStr += "..."; }
+                    out.println("<div class=\"element\">" + authorsToStr + "</div>");
+                    out.println("<div class=\"element\">" + (book.getEditionYear().getYear() + 1900) + "</div>");
+                    out.println("<div class=\"element\">" + book.getPrice() + "</div>");
+                    out.println(new StringBuilder().append("<form id=\"edit-form\" action=\"")
+                            .append(request.getContextPath()).append("/editBook\" method=\"get\">")
+                            .append("<input id=\"id\" name=\"id\" value=\"").append(book.getId()).append( "\" hidden>")
+                            .append("<div class=\"edit-modal-button\">")
+                            .append("<button id=\"#editButton\" type=\"submit\">")
+                            .append("<img src=\"resources/images/pen.png\" alt=\"ред.\"/>")
+                            .append("</button>")
+                            .append("</div>")
+                            .append("</form>")
+                    );
+                    out.println(new StringBuilder().append("<form id=\"del-form\" action=\"")
+                            .append(request.getContextPath())
+                            .append("/deleteBook\" method=\"delete\">")
+                            .append("<input id=\"id\" name=\"id\" value=\"")
+                            .append(book.getId()).append("\" hidden>")
+                            .append("<div class=\"del-button\">")
+                            .append("<button type=\"submit\">")
+                            .append("<img src=\"resources/images/delete.png\" alt=\"уд.\" />")
+                            .append("</button>")
+                            .append("</div>")
+                            .append("</form>")
+                    );
+                    out.println("</div>");
+                }
+            }
+         %>
     </div>
 </div>
-</jsp:body>
+</body>
 </html>

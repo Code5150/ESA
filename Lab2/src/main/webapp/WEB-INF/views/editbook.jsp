@@ -1,19 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Dmitry
-  Date: 28.11.2021
-  Time: 21:57
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>lab1</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../../resources/styles/styles.css" />
 </head>
 <body>
 <div class="header">
-    <img src="../../resources/book.png" alt="Book">
+    <img src="../../resources/images/book.png" alt="Book">
     <hr color="#f28f47" />
     <h1>Book Shop</h1>
     <hr color="#f28f47" />
