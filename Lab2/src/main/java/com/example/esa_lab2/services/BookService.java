@@ -6,7 +6,6 @@ import com.example.esa_lab2.dao.GenreDAO;
 import com.example.esa_lab2.dto.Author;
 import com.example.esa_lab2.dto.Book;
 import com.example.esa_lab2.dto.Genre;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -65,11 +64,11 @@ public class BookService {
         for(String authorName: authorArray){
             // проверка есть ли имя автора в БД
             // если нет, то добавить и выдать id
-            var author = AuthorDAO.findByName(authorName.toLowerCase());
+            var author = authorDAO.findByName(authorName.toLowerCase());
             if (author == null) {
                 author = new Author();
                 author.setName(authorName);
-                AuthorDAO.insert(author);
+                authorDAO.insert(author);
             }
             book.getAuthors().add(author);
         }
@@ -77,15 +76,15 @@ public class BookService {
         for(String g: genreArray){
             // проверка есть ли имя жанра в БД
             // если нет, то добавить и выдать id
-            var genreFound = GenreDAO.findByName(g.toLowerCase());
+            var genreFound = genreDAO.findByName(g.toLowerCase());
             if (genreFound == null) {
                 genreFound = new Genre();
                 genreFound.setName(g);
-                GenreDAO.insert(genreFound);
+                genreDAO.insert(genreFound);
             }
             book.getGenres().add(genreFound);
         }
-        BookDAO.insert(book);
+        bookDAO.insert(book);
     }
 
     public void editBook(
@@ -118,11 +117,11 @@ public class BookService {
         for(String authorName: authorArray){
             // проверка есть ли имя автора в БД
             // если нет, то добавить и выдать id
-            var author = AuthorDAO.findByName(authorName.toLowerCase());
+            var author = authorDAO.findByName(authorName.toLowerCase());
             if (author == null) {
                 author = new Author();
                 author.setName(authorName);
-                AuthorDAO.insert(author);
+                authorDAO.insert(author);
             }
             newAuthors.add(author);
         }
@@ -132,11 +131,11 @@ public class BookService {
         for(String g: genreArray){
             // проверка есть ли имя жанра в БД
             // если нет, то добавить и выдать id
-            var genreFound = GenreDAO.findByName(g.toLowerCase());
+            var genreFound = genreDAO.findByName(g.toLowerCase());
             if (genreFound == null) {
                 genreFound = new Genre();
                 genreFound.setName(g);
-                GenreDAO.insert(genreFound);
+                genreDAO.insert(genreFound);
             }
             newGenres.add(genreFound);
         }

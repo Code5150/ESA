@@ -29,7 +29,7 @@ public class AuthorDAO implements StandartDAO<Author>{
     }
 
     @Override
-    public static void insert(Author entity) {
+    public void insert(Author entity) {
         em.persist(entity);
     }
 
@@ -43,7 +43,7 @@ public class AuthorDAO implements StandartDAO<Author>{
         em.remove(entity);
     }
 
-    public static Author findByName(@NonNull String authorName) {
+    public Author findByName(@NonNull String authorName) {
         Author result = null;
         try {
             result = em.createQuery("SELECT a from Author a WHERE :authorName like LOWER(a.name)", Author.class)

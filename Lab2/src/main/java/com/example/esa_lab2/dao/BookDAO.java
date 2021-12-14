@@ -27,7 +27,7 @@ public class BookDAO implements StandartDAO<Book> {
     }
 
     @Override
-    public static void insert(Book entity) {
+    public void insert(Book entity) {
         em.persist(entity);
     }
 

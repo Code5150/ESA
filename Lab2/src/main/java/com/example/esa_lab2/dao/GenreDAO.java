@@ -29,7 +29,7 @@ public class GenreDAO implements StandartDAO<Genre> {
     }
 
     @Override
-    public static void insert(Genre entity) {
+    public void insert(Genre entity) {
         em.persist(entity);
     }
 
@@ -43,7 +43,7 @@ public class GenreDAO implements StandartDAO<Genre> {
         em.remove(entity);
     }
 
-    public static Genre findByName(@NonNull String genreName) {
+    public Genre findByName(@NonNull String genreName) {
         Genre result = null;
         try {
             result = em.createQuery("SELECT g from Genre g WHERE :genreName like LOWER(g.name)", Genre.class)
