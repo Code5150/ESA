@@ -4,6 +4,7 @@ import com.example.esa_lab2.dto.Author;
 import com.example.esa_lab2.dto.Book;
 import com.example.esa_lab2.dto.Genre;
 import com.example.esa_lab2.services.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.text.ParseException;
 
 @Controller
 public class BookController {
-
+    
     private BookService bookService;
 
     @RequestMapping("/")

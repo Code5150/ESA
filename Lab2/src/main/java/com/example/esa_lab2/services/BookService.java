@@ -28,6 +28,7 @@ public class BookService {
     @Inject
     protected GenreDAO genreDAO;
 
+
     public List<Book> getListBook() {
         return bookDAO.selectAll();
     }
