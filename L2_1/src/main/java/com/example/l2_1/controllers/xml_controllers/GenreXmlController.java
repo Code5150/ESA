@@ -1,7 +1,7 @@
 package com.example.l2_1.controllers.xml_controllers;
 
-import com.example.l2_1.entity.Genre;
-import com.example.l2_1.service.GenreService;
+import com.example.l2_1.entities.Genre;
+import com.example.l2_1.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

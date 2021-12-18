@@ -1,4 +1,4 @@
-package com.example.l2_1.entity;
+package com.example.l2_1.entities;
 
 import lombok.Getter;
 import lombok.Setter;

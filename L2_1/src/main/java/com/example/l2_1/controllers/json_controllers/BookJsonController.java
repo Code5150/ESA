@@ -1,8 +1,8 @@
 package com.example.l2_1.controllers.json_controllers;
 
 
-import com.example.l2_1.entity.Book;
-import com.example.l2_1.service.BookService;
+import com.example.l2_1.entities.Book;
+import com.example.l2_1.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

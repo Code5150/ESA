@@ -1,7 +1,7 @@
 package com.example.l2_1.controllers.xslt_controllers;
 
-import com.example.l2_1.entity.Genre;
-import com.example.l2_1.service.GenreService;
+import com.example.l2_1.entities.Genre;
+import com.example.l2_1.services.GenreService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.springframework.beans.factory.annotation.Autowired;

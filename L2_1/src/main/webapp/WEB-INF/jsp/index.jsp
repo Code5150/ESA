@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%--<%@ page import="com.example.l2_1.entity.Book" %>--%>
-<%--<%@ page import="com.example.l2_1.entity.Author" %>--%>
+<%--<%@ page import="com.example.l2_1.entities.Book" %>--%>
+<%--<%@ page import="com.example.l2_1.entities.Author" %>--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>

@@ -1,6 +1,6 @@
-package com.example.l2_1.repository;
+package com.example.l2_1.repositories;
 
-import com.example.l2_1.entity.Author;
+import com.example.l2_1.entities.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,6 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Transactional
-public interface AuthorRepository extends JpaRepository<Author, UUID> {
-    Optional<Author> findByName(String name);
+public interface GenreRepository extends JpaRepository<Genre, UUID> {
+    Optional<Genre> findByName(String name);
 }

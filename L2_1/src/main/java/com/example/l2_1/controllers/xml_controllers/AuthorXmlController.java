@@ -1,8 +1,8 @@
 package com.example.l2_1.controllers.xml_controllers;
 
 
-import com.example.l2_1.entity.Author;
-import com.example.l2_1.service.AuthorService;
+import com.example.l2_1.entities.Author;
+import com.example.l2_1.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-package com.example.l2_1.repository;
+package com.example.l2_1.repositories;
 
-import com.example.l2_1.entity.Book;
+import com.example.l2_1.entities.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
