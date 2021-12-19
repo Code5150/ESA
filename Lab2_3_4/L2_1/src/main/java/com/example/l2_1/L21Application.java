@@ -17,8 +17,8 @@ import org.springframework.jms.support.converter.MessageType;
 import javax.jms.ConnectionFactory;
 
 
-@EnableJms
 @SpringBootApplication(scanBasePackages = "com.example.l2_1")
+@EnableJms
 public class L21Application extends SpringBootServletInitializer {
     public static ConfigurableApplicationContext context;
 

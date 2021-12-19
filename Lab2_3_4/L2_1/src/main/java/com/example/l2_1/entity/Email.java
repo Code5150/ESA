@@ -11,10 +11,10 @@ import javax.persistence.Table;
 @Table(name="email")
 public class Email extends BaseUuidEntity {
 
-    @Column(name = "to")
+    @Column(name = "to_email")
     @Getter
     @Setter
-    private String to;
+    private String toEmail;
 
     @Column(name = "body")
     @Getter
@@ -24,7 +24,7 @@ public class Email extends BaseUuidEntity {
     @Override
     public String toString() {
         return "Email{" +
-                "to='" + to + '\'' +
+                "to='" + toEmail + '\'' +
                 ", body='" + body + '\'' +
                 '}';
     }

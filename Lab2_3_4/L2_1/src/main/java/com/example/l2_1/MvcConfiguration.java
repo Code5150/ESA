@@ -19,5 +19,4 @@ public class MvcConfiguration implements WebMvcConfigurer {
         resolver.setSuffix(".xslt");
         return resolver;
     }
-
 }

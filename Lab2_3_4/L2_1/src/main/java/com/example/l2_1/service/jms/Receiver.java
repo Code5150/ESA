@@ -25,7 +25,7 @@ public class Receiver {
         System.out.println("Info: ====== start sending massage ======");
 
         Email email = new Email();
-        email.setTo("example@mail.com");
+        email.setToEmail("example@mail.com");
         email.setBody(log.getDetails());
 
         emailRepository.save(email);
