@@ -36,4 +36,6 @@ public class AuthorService {
     public void delete(UUID id) {
         authorRepository.deleteById(id);
     }
+
+    public Author findByName(String name) { return authorRepository.findByNameIgnoreCase(name); }
 }

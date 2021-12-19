@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>lab1</title>
-    <link rel="stylesheet" href="../../../resources/static/css/styles.css" /></title>
+    <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
 <div class="header">
-    <img src="./resources/book.png" alt="Book">
+    <img src="/images/book.png" alt="Book">
     <hr color="#f28f47" />
     <h1>Book Shop</h1>
     <hr color="#f28f47" />

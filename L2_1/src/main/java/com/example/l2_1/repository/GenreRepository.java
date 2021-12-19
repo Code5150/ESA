@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Transactional
 public interface GenreRepository extends JpaRepository<Genre, UUID> {
-    Optional<Genre> findByName(String name);
+    Genre findByNameIgnoreCase(String name);
 }

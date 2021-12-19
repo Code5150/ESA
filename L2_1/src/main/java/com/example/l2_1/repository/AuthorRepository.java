@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Transactional
 public interface AuthorRepository extends JpaRepository<Author, UUID> {
-    Optional<Author> findByName(String name);
+    Author findByNameIgnoreCase(String name);
 }

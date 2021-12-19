@@ -1,4 +1,4 @@
-package com.example.l2_1;
+package com.example.l2_1.controller;
 
 import com.example.l2_1.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
