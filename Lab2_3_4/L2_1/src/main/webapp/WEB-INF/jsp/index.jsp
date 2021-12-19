@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>lab1</title>
+    <title>BookShop</title>
     <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>

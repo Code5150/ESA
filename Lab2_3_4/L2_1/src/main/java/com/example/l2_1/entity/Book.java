@@ -51,4 +51,16 @@ public class Book extends BaseUuidEntity {
     @Getter
     @Setter
     private Integer price;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", authors=" + authors +
+                ", genres=" + genres +
+                ", editionYear=" + editionYear +
+                ", price=" + price +
+                '}';
+    }
 }

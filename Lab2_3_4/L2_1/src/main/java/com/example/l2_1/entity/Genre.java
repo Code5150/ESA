@@ -23,4 +23,12 @@ public class Genre extends BaseUuidEntity {
     @Getter
     @Setter
     private Set<Book> books = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Genre{" +
+                "name='" + name + '\'' +
+                ", books=" + books +
+                '}';
+    }
 }

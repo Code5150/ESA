@@ -28,4 +28,14 @@ public class Author extends BaseUuidEntity {
     @Getter
     @Setter
     private Set<Book> books = new HashSet<>();
+
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "name='" + name + '\'' +
+                ", bio='" + bio + '\'' +
+                ", books=" + books +
+                '}';
+    }
 }
