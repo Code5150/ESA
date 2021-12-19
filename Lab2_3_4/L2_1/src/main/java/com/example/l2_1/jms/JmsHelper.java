@@ -1,4 +1,4 @@
-package com.example.l2_1.service.jms;
+package com.example.l2_1.jms;
 
 public class JmsHelper {
 

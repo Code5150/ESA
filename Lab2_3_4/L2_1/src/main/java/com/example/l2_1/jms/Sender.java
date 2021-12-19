@@ -1,4 +1,4 @@
-package com.example.l2_1.service.jms;
+package com.example.l2_1.jms;
 
 import com.example.l2_1.entity.Log;
 import com.example.l2_1.util.DBChanges;
@@ -17,7 +17,13 @@ public class Sender {
         Log log = new Log();
         log.setKindChange(changes.toString());
         log.setEntity(entity);
-        log.setDetails(descriptions.toString());
+        if(descriptions == null){
+            log.setDetails("");
+        }
+        else{
+            log.setDetails(descriptions.toString());
+        }
+
         jmsTemplate.convertAndSend(JmsHelper.DESTINATION_NAME, log);
 
     }

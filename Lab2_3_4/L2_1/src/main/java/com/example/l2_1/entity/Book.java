@@ -57,8 +57,6 @@ public class Book extends BaseUuidEntity {
         return "Book{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", authors=" + authors +
-                ", genres=" + genres +
                 ", editionYear=" + editionYear +
                 ", price=" + price +
                 '}';

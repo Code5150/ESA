@@ -1,14 +1,12 @@
 package com.example.l2_1.service;
 
 import com.example.l2_1.entity.Author;
+import com.example.l2_1.jms.Sender;
 import com.example.l2_1.repository.AuthorRepository;
-import com.example.l2_1.service.jms.Sender;
 import com.example.l2_1.util.DBChanges;
-import com.example.l2_1.util.ListConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,8 +21,7 @@ public class AuthorService {
     public List<Author> selectAll() {
         List<Author> authorList = authorRepository.findAll();
 
-        sender.logging("author", DBChanges.READE,
-                ListConverter.listToString(Collections.singletonList(authorList)));
+        sender.logging("author", DBChanges.READE, authorList);
 
         return authorList;
     }

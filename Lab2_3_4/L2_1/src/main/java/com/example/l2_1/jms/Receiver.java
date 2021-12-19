@@ -1,4 +1,4 @@
-package com.example.l2_1.service.jms;
+package com.example.l2_1.jms;
 
 import com.example.l2_1.entity.Email;
 import com.example.l2_1.entity.Log;
