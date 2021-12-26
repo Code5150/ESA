@@ -1,15 +1,19 @@
 package com.example.l2_1.entity;
 
+import com.example.l2_1.dto.BookDTO;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "book")
+@NoArgsConstructor
 public class Book extends BaseUuidEntity {
 
     @Column(name = "name")
@@ -60,5 +64,15 @@ public class Book extends BaseUuidEntity {
                 ", editionYear=" + editionYear +
                 ", price=" + price +
                 '}';
+    }
+
+    public Book(BookDTO bookDTO) {
+        this.id = bookDTO.getId();
+        this.name = bookDTO.getName();
+        this.description = bookDTO.getDescription();
+        this.editionYear = bookDTO.getEditionYear();
+        this.price = bookDTO.getPrice();
+        this.authors = bookDTO.getAuthors().stream().map(Author::new).collect(Collectors.toSet());
+        this.genres = bookDTO.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
     }
 }

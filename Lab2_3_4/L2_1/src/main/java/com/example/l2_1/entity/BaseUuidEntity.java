@@ -14,5 +14,5 @@ public class BaseUuidEntity {
     @GeneratedValue
     @Column(name="id", insertable = false, updatable = false, nullable = false)
     @Getter
-    private UUID id;
+    protected UUID id;
 }
