@@ -23,7 +23,7 @@ public class BookService {
 
         List<Book> bookList = bookRepository.findAll();
 
-        sender.logging("book", DBChanges.READE, bookList);
+        sender.logging("book", DBChanges.READ, "list books, number of records: " + bookList.size());
 
         return bookRepository.findAll();
     }
@@ -31,7 +31,7 @@ public class BookService {
     public Book select(UUID id) {
 
         Book book = bookRepository.getById(id);
-        sender.logging("book", DBChanges.READE, book);
+        sender.logging("book", DBChanges.READ, book);
 
         return book;
     }

@@ -19,8 +19,8 @@ public class Genre extends BaseUuidEntity {
     @Setter
     private String name;
 
-    @ManyToMany(mappedBy = "genres")
     @Getter
+    @ManyToMany(mappedBy = "genres")
     @Setter
     private Set<Book> books = new HashSet<>();
 

@@ -3,29 +3,28 @@ package com.example.l2_1.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="email")
 public class Email extends BaseUuidEntity {
 
-    @Column(name = "to_email")
+    @Column(name = "name")
     @Getter
     @Setter
-    private String toEmail;
+    private String name;
 
-    @Column(name = "body")
+
+    @ManyToOne
     @Getter
     @Setter
-    private String body;
+    private SubscriptionType subscriptionType;
 
     @Override
     public String toString() {
         return "Email{" +
-                "to='" + toEmail + '\'' +
-                ", body='" + body + '\'' +
+                "toEmail='" + name + '\'' +
+                ", subscriptionType=" + subscriptionType.toString() +
                 '}';
     }
 }

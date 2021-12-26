@@ -21,7 +21,12 @@ public class Sender {
             log.setDetails("");
         }
         else{
-            log.setDetails(descriptions.toString());
+            if(descriptions.toString().length() > 100) {
+                log.setDetails(descriptions.toString().substring(0, 100) + "...");
+            }
+            else {
+                log.setDetails(descriptions.toString());
+            }
         }
 
         jmsTemplate.convertAndSend(JmsHelper.DESTINATION_NAME, log);

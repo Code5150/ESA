@@ -25,7 +25,7 @@ public class GenreXsltController {
     @GetMapping
     public ModelAndView getGenres() throws JsonProcessingException {
         List<Genre> genreList = genreService.selectAll();
-        ModelAndView modelAndView = new ModelAndView("genre");
+        ModelAndView modelAndView = new ModelAndView("classpath:/xslt/genre.xslt");
         Source source = new StreamSource(new ByteArrayInputStream(new XmlMapper().writeValueAsBytes(genreList)));
         modelAndView.addObject(source);
         return modelAndView;

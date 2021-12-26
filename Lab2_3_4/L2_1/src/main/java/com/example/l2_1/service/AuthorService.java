@@ -21,7 +21,8 @@ public class AuthorService {
     public List<Author> selectAll() {
         List<Author> authorList = authorRepository.findAll();
 
-        sender.logging("author", DBChanges.READE, authorList);
+        sender.logging("author", DBChanges.READ,
+                "list authors, number of records: " + authorList.size());
 
         return authorList;
     }
@@ -29,7 +30,7 @@ public class AuthorService {
     public Author select(UUID id) {
         Author author = authorRepository.getById(id);
 
-        sender.logging("author", DBChanges.READE, author);
+        sender.logging("author", DBChanges.READ, author);
 
         return author;
     }
@@ -62,7 +63,7 @@ public class AuthorService {
 
         Author author = authorRepository.findByNameIgnoreCase(name);
 
-        sender.logging("author", DBChanges.READE, author);
+        sender.logging("author", DBChanges.READ, author);
         return author;
     }
 }

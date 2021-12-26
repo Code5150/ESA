@@ -25,7 +25,7 @@ public class BookXsltController {
     @GetMapping
     public ModelAndView getBooks() throws JsonProcessingException {
         List<Book> bookList = bookService.selectAll();
-        ModelAndView modelAndView = new ModelAndView("book");
+        ModelAndView modelAndView = new ModelAndView("classpath:/xslt/book.xslt");
         Source source = new StreamSource(new ByteArrayInputStream(new XmlMapper().writeValueAsBytes(bookList)));
         modelAndView.addObject(source);
         return modelAndView;

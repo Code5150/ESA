@@ -22,7 +22,8 @@ public class GenreService {
 
         List<Genre> genreList = genreRepository.findAll();
 
-        sender.logging("genre", DBChanges.READE, genreList);
+        sender.logging("genre", DBChanges.READ,
+                "list genres, number of records: " + genreList.size());
 
         return genreList;
     }
@@ -31,7 +32,7 @@ public class GenreService {
 
         Genre genre = genreRepository.getById(id);
 
-        sender.logging("genre", DBChanges.READE, genre);
+        sender.logging("genre", DBChanges.READ, genre);
         return genre;
     }
 
@@ -63,7 +64,7 @@ public class GenreService {
 
         Genre genre = genreRepository.findByNameIgnoreCase(name);
 
-        sender.logging("genre", DBChanges.READE, genre);
+        sender.logging("genre", DBChanges.READ, genre);
         return genre;
     }
 }

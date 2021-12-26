@@ -1,7 +1,7 @@
 package com.example.l2_1.util;
 
 public enum DBChanges {
-    READE,
+    READ,
     CREATE,
     UPDATE,
     DELETE

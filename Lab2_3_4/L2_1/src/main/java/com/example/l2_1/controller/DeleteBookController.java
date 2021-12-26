@@ -1,9 +1,7 @@
 package com.example.l2_1.controller;
 
 import com.example.l2_1.entity.Author;
-import com.example.l2_1.service.AuthorService;
 import com.example.l2_1.service.BookService;
-import com.example.l2_1.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
