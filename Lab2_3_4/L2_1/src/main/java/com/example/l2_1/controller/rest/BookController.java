@@ -1,4 +1,4 @@
-package com.example.l2_1.controller.xml;
+package com.example.l2_1.controller.rest;
 
 import com.example.l2_1.dto.AuthorDTO;
 import com.example.l2_1.dto.BookDTO;
@@ -16,13 +16,13 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/xml/book", produces = MediaType.APPLICATION_XML_VALUE)
-public class BookXmlController {
+@RequestMapping(value = "/books")
+public class BookController {
 
     @Autowired
     private BookService bookService;
 
-    @GetMapping
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<BookDTO> getList(){
         return bookService.selectAll().stream().map(b -> new BookDTO(b).withAuthors(
                 b.getAuthors().stream().map(AuthorDTO::new).collect(Collectors.toSet())
@@ -32,7 +32,7 @@ public class BookXmlController {
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public BookDTO getById(@PathVariable String id) {
         var book = bookService.select(UUID.fromString(id));
         return new BookDTO(book).withAuthors(
@@ -84,5 +84,6 @@ public class BookXmlController {
     public void deleteById(@PathVariable String id) {
         bookService.delete(UUID.fromString(id));
     }
+
 
 }

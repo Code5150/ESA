@@ -1,4 +1,4 @@
-package com.example.l2_1.controller.json;
+package com.example.l2_1.controller.rest;
 
 import com.example.l2_1.dto.AuthorDTO;
 import com.example.l2_1.dto.BookDTO;
@@ -14,13 +14,13 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/json/genre", produces = MediaType.APPLICATION_JSON_VALUE)
-public class GenreJsonController {
+@RequestMapping(value = "/genres")
+public class GenreController {
 
     @Autowired
     private GenreService genreService;
 
-    @GetMapping
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<GenreDTO> getList(){
         return genreService.selectAll().stream().map(g -> new GenreDTO(g).withBooks(
               g.getBooks().stream().map(b -> new BookDTO(b).withAuthors(
@@ -30,7 +30,7 @@ public class GenreJsonController {
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public GenreDTO getById(@PathVariable String id) {
         var genre = genreService.select(UUID.fromString(id));
         return new GenreDTO(genre).withBooks(genre.getBooks().stream().map(b -> new BookDTO(b).withAuthors(
