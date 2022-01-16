@@ -26,6 +26,8 @@ public class L21Application extends SpringBootServletInitializer {
     public JmsListenerContainerFactory<?> myFactory(ConnectionFactory connectionFactory,
                                                     DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
+        factory.setConnectionFactory(connectionFactory);
+        factory.setConcurrency("2-10");
         configurer.configure(factory, connectionFactory);
         return factory;
     }

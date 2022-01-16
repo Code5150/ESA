@@ -8,19 +8,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Sender {
-
     @Autowired
     private JmsTemplate jmsTemplate;
 
     public void logging(String entity, DBChanges changes, Object descriptions) {
-        System.out.println("Info: ====== " + changes.toString() + " " + entity + " ======");
         Log log = new Log();
         log.setKindChange(changes.toString());
         log.setEntity(entity);
-        if(descriptions == null){
+
+        if (descriptions == null) {
             log.setDetails("");
-        }
-        else{
+        } else {
             if(descriptions.toString().length() > 100) {
                 log.setDetails(descriptions.toString().substring(0, 100) + "...");
             }
@@ -29,9 +27,7 @@ public class Sender {
             }
         }
 
-        jmsTemplate.convertAndSend(JmsHelper.DESTINATION_NAME, log);
-
+        jmsTemplate.setTimeToLive(5000L);
+        jmsTemplate.convertAndSend(JmsHelper.LOGGER_DESTINATION_NAME, log);
     }
-
-
 }
